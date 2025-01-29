@@ -139,7 +139,7 @@ public class GoogleSignInPlugin extends CordovaPlugin {
     }
 
     private void isSignedIn(CallbackContext callbackContext) {
-        boolean isSignedIn = (account != null || mAuth.getCurrentUser() != null);
+        boolean isSignedIn = (account != null);
         callbackContext.success(getSuccessMessageInJsonString(String.valueOf(isSignedIn)));
     }
 
@@ -215,7 +215,6 @@ public class GoogleSignInPlugin extends CordovaPlugin {
             public void onComplete(@NonNull Task<Void> task) {
                 account = null;
                 mCallbackContext.success(getSuccessMessageInJsonString("Logged out"));
-                mAuth.signOut();
             }
         });
         mGoogleSignInClient.signOut().addOnFailureListener(new OnFailureListener() {
