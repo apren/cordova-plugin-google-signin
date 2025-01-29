@@ -114,7 +114,7 @@ public class GoogleSignInPlugin extends CordovaPlugin {
                     userInfo.put("display_name", credential.getDisplayName());
                     userInfo.put("email", credential.getId());
                     userInfo.put("photo_url", credential.getProfilePictureUri());
-                    userInfo.put("id_token", credential.getGoogleIdToken()());
+                    userInfo.put("id_token", credential.getGoogleIdToken());
                     mCallbackContext.success(getSuccessMessageForOneTapLogin(userInfo));
                 } catch (Exception ex) {
                     mCallbackContext.error(getErrorMessageInJsonString(ex.getMessage()));
