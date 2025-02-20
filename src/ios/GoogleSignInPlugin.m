@@ -70,7 +70,7 @@
             NSDictionary *result = @{
                            @"email"            : email,
                            @"id"               : userId,
-                           @"id_token"         : user.authentication.idToken,
+                           @"id_token"         : user.idToken,
                            @"display_name"     : user.profile.name       ? : [NSNull null],
                            @"given_name"       : user.profile.givenName  ? : [NSNull null],
                            @"family_name"      : user.profile.familyName ? : [NSNull null],
