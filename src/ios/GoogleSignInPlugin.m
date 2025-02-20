@@ -58,12 +58,13 @@
     
     GIDSignIn *signIn = GIDSignIn.sharedInstance;
     
-    [signIn signInWithOptions:config presentingViewController:self.viewController callback:^(GIDGoogleUser * _Nullable user, NSError * _Nullable error) {
+    [signIn signInWithPresentingViewController:self.viewController completion:^(GIDSignInResult * _Nullable signInResult, NSError * _Nullable error) {
         if (error) {
             NSDictionary *errorDetails = @{@"status": @"error", @"message": error.localizedDescription};
             CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[self toJSONString:errorDetails]];
             [self.commandDelegate sendPluginResult:pluginResult callbackId:self->_callbackId];
         } else {
+            GIDGoogleUser* user = signInResult.user;
             NSString *email = user.profile.email;
             NSString *userId = user.userID;
             NSURL *imageUrl = [user.profile imageURLWithDimension:120]; // TODO pass in img size as param, and try to sync with Android
